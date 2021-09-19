@@ -3,7 +3,6 @@ const app = express();
 
 const sampleRoutes = require("./routes/sampleRoutes");
 
-
 // MIDDLEWARE
 app.use(express.json({ limit: "10kb" }));
 
@@ -12,7 +11,9 @@ app.use("/api/v1/sample", sampleRoutes);
 
 // HANDLE ERROR
 app.use("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server !`, 404));
+  //   next(new AppError(`Can't find ${req.originalUrl} on this server !`, 404));
+  console.log("not found");
+  res.end();
 });
 // app.use(globalErrorHandler);
 
