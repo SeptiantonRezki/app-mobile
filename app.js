@@ -1,12 +1,16 @@
 const path = require('path');
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 
 const appRoutes = require("./routes/appRoutes");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
+
+
+app.use(cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
