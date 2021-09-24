@@ -79,7 +79,7 @@ exports.getAllAds = (req, res, next) => {
     // });
     //PRODUCTION
     var sendData = results.map((e, i) => {
-      e.image_url = "http://208:87.132.73/img/ads/" + e.image_url;
+      e.image_url = "http://208.87.132.73/img/ads/" + e.image_url;
       return e;
     });
     res.status(200).json({
@@ -116,7 +116,7 @@ exports.getOneAds = async (req, res, next) => {
       //   "http://localhost:5021/img/ads/" + results[0].image_url;
       // prod
       results[0].image_url =
-        "http://208:87.132.73/img/ads/" + results[0].image_url;
+        "http://208.87.132.73/img/ads/" + results[0].image_url;
       res.status(200).json({
         status: "success",
         data: results,
@@ -138,7 +138,7 @@ exports.sendToClient = (req, res, next) => {
       // prod
 
       results[0].image_url =
-        "http://208:87.132.73/img/ads/" + results[0].image_url;
+        "http://208.87.132.73/img/ads/" + results[0].image_url;
       res.status(201).json({
         status: "success",
         data: results,
