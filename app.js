@@ -1,20 +1,30 @@
+const path = require('path');
 const express = require("express");
 const app = express();
+const cookieParser = require('cookie-parser');
 
-const sampleRoutes = require("./routes/sampleRoutes");
+
+const appRoutes = require("./routes/appRoutes");
+const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
+
+// Serving static files
+app.use(express.static(path.join(__dirname, 'public')));
+// GET FILE => http://localhost:5021/img/ads/ads-1632389819493.jpeg
 
 // MIDDLEWARE
-app.use(express.json({ limit: "10kb" }));
+app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(cookieParser());
 
 // ROUTE
-app.use("/api/v1/sample", sampleRoutes);
+app.use("/api/v1/app", appRoutes);
 
 // HANDLE ERROR
-app.use("*", (req, res, next) => {
-  //   next(new AppError(`Can't find ${req.originalUrl} on this server !`, 404));
-  console.log("not found");
-  res.end();
+app.all("*", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-// app.use(globalErrorHandler);
+
+app.use(globalErrorHandler);
 
 module.exports = app;

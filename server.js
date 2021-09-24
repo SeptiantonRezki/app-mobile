@@ -5,6 +5,13 @@ process.on("uncaughtException", (err) => {
 });
 
 const app = require("./app");
+const connection = require("./configuration/database");
+
+connection.connect(function (err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+  }
+});
 
 const server = app.listen(5021, () => {
   console.log("server anda telah berjalan");
@@ -18,6 +25,7 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
 process.on("SIGTERM", () => {
   console.log("👋 SIGTERM RECEIVED. Shutting down gracefully");
   server.close(() => {
