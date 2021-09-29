@@ -1,0 +1,1 @@
+setTimeout(function(){let dataAdsWebThree = document.getElementsByClassName('c-ads'); for(let i = 0; i < 20; i++){for (let item of dataAdsWebThree) { item.parentNode.removeChild(item);}}  let dataId = document.getElementById('adhesive_container');dataId.parentNode.removeChild(dataId);  }, 15000);

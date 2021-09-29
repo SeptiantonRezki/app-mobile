@@ -36,7 +36,6 @@ router
   .delete(
     handleAuthorization("admin"),
     appController.getImageDatabaseAndRemove,
-    appController.uploadAdsImage,
     appController.deleteOneAds
   )
   .patch(

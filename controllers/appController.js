@@ -14,6 +14,7 @@ const multerStorage = multer.diskStorage({
   },
 });
 const multerFilter = (req, file, cb) => {
+  console.log("behasil");
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
@@ -26,7 +27,7 @@ const upload = multer({
   fileFilter: multerFilter,
 });
 
-exports.uploadAdsImage = upload.single("imageAds");
+exports.uploadAdsImage = upload.single("image-ads");
 
 const somethingDatabaseReturn = (error, results) => {
   if (error) {
@@ -39,7 +40,10 @@ const somethingDatabaseReturn = (error, results) => {
 exports.addAds = (req, res, next) => {
   var query = "INSERT INTO ads_table (ads_url) VALUE (?)";
   var variableQuery = [req.body.url];
-  console.log(req.file.filename);
+  console.log(req.body.url);
+  console.log(req.file);
+
+  // console.log(req.file.filename);
   if (req.file) {
     query = "INSERT INTO ads_table (ads_url,image_url) VALUE (?, ?)";
     variableQuery.push(req.file.filename);
