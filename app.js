@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: "10kb" }));
 
 // ROUTE
-app.use("/api/v1/app", appRoutes);
+// app.use("/api/v1/app", appRoutes);
 app.use("/api/v1/script", scriptRoutes);
 
 // HANDLE ERROR

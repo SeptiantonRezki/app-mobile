@@ -5,13 +5,13 @@ process.on("uncaughtException", (err) => {
 });
 
 const app = require("./app");
-const connection = require("./configuration/database");
+// const connection = require("./configuration/database");
 
-connection.connect(function (err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-  }
-});
+// connection.connect(function (err) {
+//   if (err) {
+//     console.error("error connecting: " + err.stack);
+//   }
+// });
 
 const server = app.listen(5021, () => {
   console.log("server anda telah berjalan");
